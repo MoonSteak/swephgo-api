@@ -2,7 +2,6 @@ package handlers
 
 import (
 	"github.com/MoonSteak/swephgo-api/internal/core"
-	log "github.com/sirupsen/logrus"
 	"net/http"
 	"strconv"
 	"strings"
@@ -30,12 +29,12 @@ func BodiesDegreeHandler(w http.ResponseWriter, r *http.Request) {
 	}
 
 	degrees := make(map[int]float64, len(iplArr))
-	xx := make([]float64, 1)
-
+	xx := make([]float64, 6)
 	for _, ipl := range iplArr {
 		err := core.CalcUt(jdn, ipl, xx)
 		if err != nil {
-			log.Println(err)
+			WriteErrorResponse(w, http.StatusBadRequest, "calculation error")
+			return
 		}
 		degrees[ipl] = xx[0]
 	}

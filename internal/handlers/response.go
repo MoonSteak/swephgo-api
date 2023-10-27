@@ -27,16 +27,14 @@ type ResponseError struct {
 }
 
 func writeResponse(w http.ResponseWriter, status int, response Response) error {
-	w.WriteHeader(status)
 	w.Header().Set("Content-Type", "application/json")
-	enc := json.NewEncoder(w)
-	enc.SetEscapeHTML(false)
-	err := enc.Encode(response)
+	w.WriteHeader(status)
+	b, err := json.Marshal(response)
 	if err != nil {
 		return err
 	}
-
-	return nil
+	_, err = w.Write(b)
+	return err
 }
 
 func WriteResponse(w http.ResponseWriter, status int, response Response) {

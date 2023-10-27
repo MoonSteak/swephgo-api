@@ -10,7 +10,7 @@ import (
 // Once it finds a date where the astronomical position is close to the target,
 // it returns that date in Julian Day Number format.
 func FindJDN(tjdUt float64, ipl int, delta float64) float64 {
-	xx := make([]float64, 1)
+	xx := make([]float64, 6)
 
 	if delta > 360 || delta < 0 {
 		return 0

@@ -41,7 +41,7 @@ func main() {
 	server := &http.Server{
 		ReadTimeout:  1 * time.Second,
 		WriteTimeout: 1 * time.Second,
-		IdleTimeout:  5 * time.Second,
+		IdleTimeout:  1 * time.Second,
 		Addr:         ":3000",
 		Handler:      r,
 	}
