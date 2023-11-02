@@ -25,6 +25,6 @@ wget -O jpl/de440.eph https://ssd.jpl.nasa.gov/ftp/eph/planets/Linux/de440/linux
 
 ```sh
 docker build . -t swephgo-api 
-docker run -it -e EPHE_PATH=/jpl -e JPL_FILE=de440.eph -v /Users/vzverev/nenadev/nena-dev/swephgo-api/jpl/de440.eph:/jpl/de440.eph -p 127.0.0.1:3000:3000 --rm swephgo-api /app
+docker run -it -e EPHE_PATH=/jpl -e JPL_FILE=de440.eph -v /jpl/de440.eph:/jpl/de440.eph -p 127.0.0.1:3000:3000 --rm swephgo-api /app
 
 ```
